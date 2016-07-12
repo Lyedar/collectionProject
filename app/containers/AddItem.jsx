@@ -101,7 +101,7 @@ const cx = classNames.bind(styles);
  						<h1 className = 'centerText profileName'>Search via Card Name!</h1>
  						<ControlLabel className='centerText'>Card Name</ControlLabel>
  						<Col sm={12} md={12} >
- 								<FormControl className='centerText' onChange={(e) => this.setState({search: e.target.value})} onKeyPress = {this.handleKeyPress.bind(this)} value = {this.state.search}/>
+ 								<FormControl className='centerText centerTextBox' onChange={(e) => this.setState({search: e.target.value})} onKeyPress = {this.handleKeyPress.bind(this)} value = {this.state.search}/>
  								<Button className='centerButton' onClick={this.checkName.bind(this)} bsStyle = 'primary'>Search</Button>
  						</Col>
  					</Row>
