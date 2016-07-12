@@ -106,3 +106,7 @@ button {
 .deleteButton {
 	padding: 15px;
 }
+
+.rounded {
+	border-radius: 15px;
+}

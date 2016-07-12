@@ -111,7 +111,6 @@ const cx = classNames.bind(styles);
  					{this.state.name ? this.confirmImage() : ''}
  					{this.state.failed ? this.searchFailed() : ''}<br />
  					<h1 className = 'profileName'>{this.state.message? "How'd you get here? Please log in!" : ''}</h1>
- 					<Button><Link to={"/addscan/" + this.props.params.slug} bsStyle = 'primary'>Search via Photo</Link></Button>
  					</Row>
  				</FormGroup>
  			</form>

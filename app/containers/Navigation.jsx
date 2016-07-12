@@ -31,8 +31,9 @@ class Navigation extends Component {
       return(
         <NavDropdown eventKey={2} title= {this.props.user} id = "user-drop-down">
           <MenuItem eventKey={2.1} href={/profile/ + this.props.user}>Profile</MenuItem>
-          <MenuItem eventKey={2.2} href={"/additem/" + this.props.user}>Add Item</MenuItem> 
-          <MenuItem eventKey={2.3} href="/logout">Log Out</MenuItem>  
+          <MenuItem eventKey={2.2} href={"/additem/" + this.props.user}>Search Name Add</MenuItem>
+          <MenuItem eventKey={2.3} href={"/addscan/" + this.props.user}>Picture Add</MenuItem> 
+          <MenuItem eventKey={2.4} href="/logout">Log Out</MenuItem>  
         </NavDropdown> 
       )     
     } else {

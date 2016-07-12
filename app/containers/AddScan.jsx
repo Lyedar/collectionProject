@@ -188,6 +188,19 @@ export default class AddScan extends React.Component {
 		}
 	}
 
+	examplePicture () {
+		if (!(_.get(this.state, 'multipleCards')) || !this.state.multipleCards.length) {
+				return (
+					<div className = 'centerText'>
+					<h3>Single Card Example</h3>
+					<img width= {575} height= {325}  src = '../assets/Images/singleExample.jpg' className = 'rounded' />
+					<h3>Multiple Cards Example</h3>
+					<img width= {575} height= {325}  src = '../assets/Images/multicardExample.jpg' className = 'rounded' />
+					</div>
+				)
+		}
+	}
+
 //will need to change bottom button
 	render() {
 		return (
@@ -197,7 +210,7 @@ export default class AddScan extends React.Component {
 					<Row className = 'centerText'>
 					<h1 className = 'centerText profileName paddingAddScan'>Search via Photo Name!</h1>
 					<ControlLabel>
-						<input type = "file" name = "userPhoto" />
+						<input style={{width: '200px'}} type = "file" name = "userPhoto" />
 					</ControlLabel>
 					</Row>
 				</FormGroup>
@@ -209,10 +222,16 @@ export default class AddScan extends React.Component {
 						{this.loadingDisplay()}
 						<label className = "widthChange">{this.displayButton()}</label>
 						<label className = "widthChange"><ControlLabel><input type = 'checkbox' id = "changeButton" onClick = {this.switchButton.bind(this)}/> For Multiple Cards at Once</ControlLabel></label>
-						<label className = "widthChange"><Button><Link to={"/additem/" + this.props.params.slug} bsStyle = 'primary'>Search via Name</Link></Button></label><br /><br />
-						<h2 className = "profileName">{this.state.multipleCards ? "Number of Cards found: " + this.state.multipleCards.length : ''}</h2>
-						<Row>{this.displayMultiple()}</Row>
-						{this.state.multipleCards ? <Button onClick={this.addToCollection.bind(this)} bsStyle = 'primary'>Confirm</Button> : ""}
+						{(_.get(this.state, 'multipleCards')) && this.state.multipleCards.length ? 
+							<div>
+								<h2 className = "profileName">{this.state.multipleCards ? "Number of Cards found: " + this.state.multipleCards.length : ''}</h2>
+								<Row>{this.displayMultiple()}</Row>
+								<Button onClick={this.addToCollection.bind(this)} bsStyle = 'primary'>Confirm</Button>
+							</div> 
+						: ''} 
+					</Row>
+					<Row>
+						{this.examplePicture()}
 					</Row>
 				</FormGroup>
 			</form>
