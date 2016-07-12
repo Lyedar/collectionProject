@@ -102,3 +102,7 @@ button {
 .marginTop {
 	margin: 75px;
 }
+
+.deleteButton {
+	padding: 15px;
+}

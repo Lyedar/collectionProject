@@ -120,8 +120,8 @@ export default class Profile extends React.Component {
                 <Col sm={4} md={4}>
                   <img className = 'imageShadow' src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`} />
                 </Col>
-                <Col  style={colStyle} sm={8}  md={7} className = 'centerText'>
-                  <h3 className = {'textShadowTitle'}>{card.name}<br/></h3>
+                <Col  style={colStyle} sm={7}  md={7} className = 'centerText'>
+                  <h3 className = {'textShadowTitle verticalAlign'}>{card.name}<br/></h3>
                   <h4 className ={'textShadowTitle'}>quantity x{card.quantity}</h4>
                   <label className = {'textShadow'}>{card.originalText}</label><br/>
                   <a className = {"link"} data-toggle="modal" href = {`http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=${card.multiverseid}`} target="_blank">Offical Wizards Page</a>

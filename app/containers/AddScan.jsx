@@ -181,7 +181,7 @@ export default class AddScan extends React.Component {
 		if(_.get(self.state, 'multipleCards')) {
 			return self.state.multipleCards.map((card)=>
 				<Col md={4}>
-				<p><img src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`} />
+				<p><img className = 'deleteButton' src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${card.multiverseid}&type=card`} />
 				{this.displayDelete(card)}</p>
 				</Col>
 			)

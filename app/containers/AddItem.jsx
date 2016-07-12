@@ -69,7 +69,7 @@ const cx = classNames.bind(styles);
 	 				<h3 className = 'textShadowTitle'>{this.state.name}</h3>
 	 			</Row>
 	 			<Row className ='centerText'>
-	 				<img className = 'imageShadow' src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${this.state.multiverseid}&type=card`} />
+	 				<img className = 'imageShadow' src={`http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=${this.state.multiverseid}&type=card`} /><br /><br />
 	 			</Row>
 	 			<Row className ='centerText'>
 	 				<Button onClick={this.addToCollection.bind(this)} bsStyle = 'primary'>Add to Collection</Button>

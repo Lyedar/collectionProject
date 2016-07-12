@@ -69,7 +69,7 @@ export default class Login extends React.Component {
 			</form>
 
 			<Button onClick ={this.pullUser.bind(this)} bsStyle = 'primary'>Login</Button><br/>
-			<br/> Dont have an Account?
+			<br/> Don't have an Account?
 			<Link to = "/signup">  Sign Up Here</Link>
 			</div>)
 		}
