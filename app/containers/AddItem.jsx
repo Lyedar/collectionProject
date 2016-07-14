@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from 'css/components/home';
-import 'whatwg-fetch';
 import {browserHistory} from 'react-router';
 import { Link } from 'react-router';
 import {Button, Row, form, FormGroup, ControlLabel, FormControl, Col, Input} from 'react-bootstrap'
 const cx = classNames.bind(styles);
+import requestApi from '../utils/requests'
 
 /*
  * Note: This is kept as a container-level component, 
@@ -24,41 +24,19 @@ const cx = classNames.bind(styles);
  	}
 
 
- 	checkName() {
- 		var self = this
- 		self.setState({failed: false, name: ''})
- 		fetch('/api/v1/cards/' + this.state.search, {credentials : 'same-origin'}) 
- 		.then(function(response) {
- 			console.log("response", response)
- 			return response.json()
- 		}).then(function(json) {
- 			console.log("json", json)
- 			self.setState(json)
- 			console.log("state" , self.state)
- 		}).catch(function(ex) {
- 			console.log('parsing failed', ex)
- 		})
+ 	checkName(name) {
+ 		this.setState({failed: false, name: ''})
+ 		requestApi('/api/v1/cards/' + name)()
+ 			.then((json) => this.setState(json))
  	}
 
 
  	addToCollection() {
  		var self = this
- 		fetch('/api/v1/collection/' + self.props.params.slug, {
- 			credentials : 'same-origin',
- 			method: 'PUT',
- 			headers: {
- 				'Accept': 'application/json', 
- 				'Content-Type': 'application/json'
- 			},
- 			body: JSON.stringify(self.state)	
- 		}).then(function(response) {
- 			return response.json()
- 		}).then(function(json) {
- 			console.log('parsed json', json)
- 		}).catch(function(ex) {
- 			console.log('parsing failed', ex)
- 		})
- 		self.setState({search: '', failed: false, name: ''})
+ 		requestApi('/api/v1/collection/' + self.props.params.slug, 'PUT')(self.state)
+ 		.then(() =>
+ 			self.setState({search: '', failed: false, name: ''})
+ 			)
  	}
 
  	confirmImage(){
@@ -85,12 +63,21 @@ const cx = classNames.bind(styles);
  	}
 
  	handleKeyPress(e){
+		this.setState({search: e.target.value}) 		
+		if(e.target.value.length > 2){
+ 			console.log(e.charCode)
+ 			this.checkName(e.target.value)
+ 		}
+ 	}
+
+ 	submitOnEnter(e){
  		console.log(e.charCode)
  		if(e.charCode === 13){
  			e.preventDefault()
- 			this.checkName()
+ 			this.addToCollection()
  		}
  	}
+
 
  	render() {
  		return (
@@ -101,8 +88,7 @@ const cx = classNames.bind(styles);
  						<h1 className = 'centerText profileName'>Search via Card Name!</h1>
  						<ControlLabel className='centerText'>Card Name</ControlLabel>
  						<Col sm={12} md={12} >
- 								<FormControl className='centerText centerTextBox' onChange={(e) => this.setState({search: e.target.value})} onKeyPress = {this.handleKeyPress.bind(this)} value = {this.state.search}/>
- 								<Button className='centerButton' onClick={this.checkName.bind(this)} bsStyle = 'primary'>Search</Button>
+ 								<FormControl className='centerText centerTextBox' onKeyPress={this.submitOnEnter.bind(this)} onChange={this.handleKeyPress.bind(this)}  value = {this.state.search}/>
  						</Col>
  					</Row>
  				</FormGroup>
